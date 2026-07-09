@@ -2,68 +2,434 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página en Construcción | CASTDIM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Granate B — Privada Lanka | CASTDIM | Sueños Hechos Propiedad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    padding: 32px;
+  :root{
+    --red:#c1272d;
+    --red-deep:#9c1f24;
+    --blue:#1568b3;
+    --blue-deep:#0f4d87;
+    --gray-dark:#767571;
+    --gray-mid:#b7b6b2;
+    --bg:#f6f6f4;
+    --white:#ffffff;
+    --ink:#211f1e;
+    --ink-soft:#5c5b57;
+    --line:#e5e4e0;
+    --radius:18px;
+    --ease:cubic-bezier(.22,1,.36,1);
   }
 
-  .container {
-    text-align: center;
-    max-width: 480px;
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Montserrat', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:520px; margin:0 auto; position:relative; background:var(--bg);}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .eyebrow{
+    font-size:11.5px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gray-dark); display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .eyebrow::before{
+    content:""; width:16px; height:2px; background:var(--red); display:inline-block;
+  }
+  .section{padding:56px 24px;}
+  .section-title{
+    font-size:26px; font-weight:800; letter-spacing:-.01em; line-height:1.15; color:var(--ink);
+  }
+  .section-sub{
+    font-size:14px; color:var(--ink-soft); font-weight:400; line-height:1.6; margin-top:10px;
   }
 
-  .logo {
-    width: 100%;
-    max-width: 340px;
-    height: auto;
-    margin-bottom: 40px;
+  .divider{
+    display:flex; align-items:flex-end; justify-content:center; gap:6px; padding:38px 0 10px;
+  }
+  .divider i{
+    width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent;
+    opacity:.35; transform:translateY(10px); transition:transform .7s var(--ease), opacity .7s var(--ease);
+  }
+  .divider i:nth-child(1){border-bottom:12px solid var(--red);}
+  .divider i:nth-child(2){border-bottom:16px solid var(--gray-mid);}
+  .divider i:nth-child(3){border-bottom:12px solid var(--blue);}
+  .divider.in i{opacity:1; transform:translateY(0);}
+  .divider.in i:nth-child(2){transition-delay:.08s;}
+  .divider.in i:nth-child(3){transition-delay:.16s;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; height:100svh; min-height:640px; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .hero-img{
+    position:absolute; inset:0; width:100%; height:112%; object-fit:cover;
+    transform:scale(1.08) translateY(0); animation:heroZoom 9s var(--ease) forwards;
+  }
+  @keyframes heroZoom{ from{transform:scale(1.14) translateY(0);} to{transform:scale(1.02) translateY(-2%);} }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,19,17,.55) 0%, rgba(20,19,17,.12) 30%, rgba(20,19,17,.35) 62%, rgba(15,14,13,.92) 100%);
+  }
+  .hero-top{
+    position:relative; z-index:2; display:flex; justify-content:center; padding-top:28px;
+    opacity:0; animation:fadeDown 1s var(--ease) .3s forwards;
+  }
+  @keyframes fadeDown{from{opacity:0; transform:translateY(-14px);} to{opacity:1; transform:translateY(0);}}
+  .hero-top img{height:64px;}
+
+  .hero-bottom{position:relative; z-index:2; padding:0 26px 34px; color:#fff;}
+  .hero-tagline{
+    height:20px; overflow:hidden; margin-bottom:14px;
+    opacity:0; animation:fadeUp .9s var(--ease) .5s forwards;
+  }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  .hero-tagline ul{list-style:none;}
+  .hero-tagline li{
+    height:20px; font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#e8a4a7;
+  }
+  .tick{animation:tick 7s steps(1) infinite;}
+  @keyframes tick{
+    0%,22%{transform:translateY(0);} 25%,47%{transform:translateY(-20px);}
+    50%,72%{transform:translateY(-40px);} 75%,97%{transform:translateY(-60px);} 100%{transform:translateY(0);}
+  }
+  .hero-title{
+    font-size:44px; font-weight:900; line-height:1; letter-spacing:-.02em; text-transform:uppercase;
+    opacity:0; animation:fadeUp 1s var(--ease) .65s forwards;
+  }
+  .hero-title span{color:var(--red); display:block; font-size:15px; font-weight:600; letter-spacing:.28em; margin-top:10px; text-transform:uppercase;}
+
+  .scroll-cue{
+    position:absolute; z-index:2; bottom:14px; left:50%; transform:translateX(-50%);
+    width:22px; height:34px; border:1.5px solid rgba(255,255,255,.5); border-radius:20px;
+  }
+  .scroll-cue::after{
+    content:""; position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    width:4px; height:6px; background:var(--red); border-radius:2px; animation:cue 1.8s ease-in-out infinite;
+  }
+  @keyframes cue{0%{opacity:1; top:6px;} 60%{opacity:0; top:18px;} 61%{opacity:0; top:6px;} 100%{opacity:1; top:6px;}}
+
+  /* ---------- INTRO ---------- */
+  .intro-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; margin-top:22px; box-shadow:0 18px 40px -24px rgba(30,29,26,.2);
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .intro-card .dot{
+    width:10px; height:10px; border-radius:50%; background:var(--red); margin-top:6px; flex:none;
+  }
+  .intro-card p{font-size:13px; color:var(--ink-soft); line-height:1.7;}
+
+  /* ---------- GALLERY ---------- */
+  .tabs{
+    display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-top:20px; scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex:0 0 auto; font-size:12px; font-weight:600; padding:10px 16px; border-radius:30px;
+    background:var(--white); border:1px solid var(--line); color:var(--ink-soft); white-space:nowrap;
+    transition:all .25s var(--ease);
+  }
+  .tab.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+
+  .gallery-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;
+  }
+  .g-card{
+    position:relative; border-radius:14px; overflow:hidden; aspect-ratio:1/1.05;
+    background:linear-gradient(150deg,#efeeea,#e2e0da);
+    display:flex; align-items:flex-end; cursor:zoom-in;
+  }
+  .g-card.wide{grid-column:span 2; aspect-ratio:16/10;}
+  .g-card img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0;}
+  .g-card .tag{
+    position:relative; z-index:2; width:100%; padding:12px; display:flex; align-items:center; gap:8px;
+    background:linear-gradient(0deg, rgba(20,19,17,.62), transparent);
+  }
+  .g-card .tag em{
+    font-style:normal; width:22px; height:22px; border-radius:50%; background:var(--red);
+    color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .g-card.blue .tag em{background:var(--blue);}
+  .g-card .tag b{color:#fff; font-size:12.5px; font-weight:700;}
+
+  /* ---------- FINANCING ---------- */
+  .fin-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 22px; margin-top:20px; text-align:center;
+    box-shadow:0 18px 40px -24px rgba(30,29,26,.2);
+  }
+  .fin-card p{font-size:13px; color:var(--ink-soft); line-height:1.6;}
+  .fin-badges{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:20px;
+  }
+  .fin-badges span{
+    font-size:11.5px; font-weight:700; color:var(--ink); background:var(--bg);
+    border:1px solid var(--line); padding:8px 14px; border-radius:20px;
   }
 
-  .divider {
-    width: 60px;
-    height: 3px;
-    background: #fecb47;
-    margin: 0 auto 28px;
-    border-radius: 2px;
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{
+    background:var(--ink); color:#fff; text-align:center; padding:60px 26px 46px; position:relative; overflow:hidden;
   }
-
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: clamp(24px, 5vw, 34px);
-    color: #3a3836;
-    letter-spacing: 0.3px;
+  .cta::before{
+    content:""; position:absolute; top:-40px; right:-30px; width:180px; height:180px;
+    background:radial-gradient(circle, rgba(193,39,45,.22), transparent 70%);
   }
+  .cta::after{
+    content:""; position:absolute; bottom:-50px; left:-30px; width:180px; height:180px;
+    background:radial-gradient(circle, rgba(21,104,179,.22), transparent 70%);
+  }
+  .cta h2{font-size:24px; font-weight:800; line-height:1.2; position:relative; z-index:1;}
+  .cta p{font-size:13px; color:var(--gray-mid); margin-top:12px; line-height:1.6; position:relative; z-index:1;}
+  .cta-btn{
+    display:inline-block; margin-top:24px; background:var(--red); color:#fff; font-weight:700;
+    font-size:13px; letter-spacing:.04em; padding:15px 32px; border-radius:30px; text-decoration:none;
+    position:relative; z-index:1; transition:transform .25s var(--ease);
+  }
+  .cta-btn:active{transform:scale(.96);}
+  .footer-logo{margin-top:38px; opacity:.95; position:relative; z-index:1;}
+  .footer-logo img{height:20px; margin:0 auto; filter:brightness(0) invert(1);}
+  .footer-tag{font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gray-mid); margin-top:10px;}
 
-  p {
-    margin-top: 12px;
-    font-size: 14px;
-    color: #797673;
-    letter-spacing: 0.5px;
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(15,14,13,.94); z-index:99; display:none;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .lightbox.show{display:flex; animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  .lightbox img{max-height:88vh; border-radius:10px;}
+  .lightbox span{
+    position:absolute; top:24px; right:24px; color:#fff; font-size:26px; font-weight:300;
   }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-  <div class="container">
-    <img class="logo" src="images/logo-un-proyecto-de-castdim.png" alt="Un Proyecto de CASTDIM">
-    <div class="divider"></div>
-    <h1>Página en Construcción</h1>
-    <p>Muy pronto estará disponible</p>
-  </div>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <img src="images/fachada.jpg" alt="Fachada Modelo Granate B" class="hero-img">
+    <div class="hero-top"><img src="images/logo-lanka.png" alt="Lanka Privada"></div>
+    <div class="hero-bottom">
+      <div class="hero-tagline">
+        <ul class="tick">
+          <li>Sueños Hechos Propiedad</li>
+          <li>Diseño premium, San Luis Potosí</li>
+          <li>Tu próximo hogar te espera</li>
+          <li>Sueños Hechos Propiedad</li>
+        </ul>
+      </div>
+      <h1 class="hero-title">Granate B<span>Privada Lanka · CASTDIM</span></h1>
+    </div>
+    <div class="scroll-cue"></div>
+  </section>
 
+  <!-- ===================== INTRO ===================== -->
+  <section class="section" style="padding-top:34px;">
+    <div class="reveal">
+      <div class="eyebrow">Modelo Granate B</div>
+      <h2 class="section-title">Un hogar pensado para tu familia</h2>
+      <p class="section-sub">Conoce cada espacio de esta casa: acabados modernos, recámaras amplias y áreas comunes luminosas en Privada Lanka, una de las privadas más buscadas de San Luis Potosí.</p>
+    </div>
+    <div class="intro-card reveal">
+      <div class="dot"></div>
+      <p>Aún no tenemos la ficha técnica (m² de terreno, construcción y distribución por planta) de este modelo. En cuanto nos la compartan, la agregamos aquí mismo.</p>
+    </div>
+  </section>
+
+  <div class="divider reveal"><i></i><i></i><i></i></div>
+
+  <!-- ===================== GALERÍA ===================== -->
+  <section class="section" style="padding-top:6px;">
+    <div class="reveal">
+      <div class="eyebrow">Galería</div>
+      <h2 class="section-title">Recorre Granate B por espacio</h2>
+      <p class="section-sub">Explora la sala, cocina, recámaras y baños de esta casa.</p>
+    </div>
+
+    <div class="tabs reveal" id="tabs">
+      <button class="tab active" data-filter="all">Todos</button>
+      <button class="tab" data-filter="comunes">Áreas comunes</button>
+      <button class="tab" data-filter="recamaras">Recámaras</button>
+      <button class="tab" data-filter="banos">Baños</button>
+    </div>
+
+    <div class="gallery-grid reveal" id="gallery">
+
+      <!-- Sala -->
+      <div class="g-card wide" data-cat="comunes" onclick="openLightbox('images/sala-1.jpg')">
+        <img src="images/sala-1.jpg" alt="Sala Lanka">
+        <div class="tag"><em>1</em><b>Sala</b></div>
+      </div>
+      <div class="g-card" data-cat="comunes" onclick="openLightbox('images/sala-2.jpg')">
+        <img src="images/sala-2.jpg" alt="Sala Lanka, otro ángulo">
+        <div class="tag"><em>1</em><b>Sala</b></div>
+      </div>
+      <div class="g-card" data-cat="comunes" onclick="openLightbox('images/sala-3.jpg')">
+        <img src="images/sala-3.jpg" alt="Sala y cocina Lanka">
+        <div class="tag"><em>1</em><b>Sala</b></div>
+      </div>
+
+      <!-- Cocina / Comedor -->
+      <div class="g-card wide" data-cat="comunes" onclick="openLightbox('images/cocina-1.jpg')">
+        <img src="images/cocina-1.jpg" alt="Cocina Lanka">
+        <div class="tag blue"><em>2</em><b>Cocina</b></div>
+      </div>
+      <div class="g-card blue" data-cat="comunes" onclick="openLightbox('images/cocina-2.jpg')">
+        <img src="images/cocina-2.jpg" alt="Cocina y comedor Lanka">
+        <div class="tag blue"><em>3</em><b>Comedor</b></div>
+      </div>
+      <div class="g-card blue" data-cat="comunes" onclick="openLightbox('images/cocina-3.jpg')">
+        <img src="images/cocina-3.jpg" alt="Comedor Lanka, otro ángulo">
+        <div class="tag blue"><em>3</em><b>Comedor</b></div>
+      </div>
+
+      <!-- Recámara coral -->
+      <div class="g-card wide" data-cat="recamaras" onclick="openLightbox('images/recamara-coral-1.jpg')">
+        <img src="images/recamara-coral-1.jpg" alt="Recámara Lanka">
+        <div class="tag"><em>4</em><b>Recámara 1</b></div>
+      </div>
+      <div class="g-card" data-cat="recamaras" onclick="openLightbox('images/recamara-coral-2.jpg')">
+        <img src="images/recamara-coral-2.jpg" alt="Recámara Lanka, otro ángulo">
+        <div class="tag"><em>4</em><b>Recámara 1</b></div>
+      </div>
+      <div class="g-card" data-cat="recamaras" onclick="openLightbox('images/recamara-coral-3.jpg')">
+        <img src="images/recamara-coral-3.jpg" alt="Recámara Lanka, closet">
+        <div class="tag"><em>4</em><b>Recámara 1</b></div>
+      </div>
+      <div class="g-card" data-cat="recamaras" onclick="openLightbox('images/recamara-coral-closet.jpg')">
+        <img src="images/recamara-coral-closet.jpg" alt="Clóset recámara 1 Lanka">
+        <div class="tag"><em>4</em><b>Clóset</b></div>
+      </div>
+
+      <!-- Recámara azul -->
+      <div class="g-card wide blue" data-cat="recamaras" onclick="openLightbox('images/recamara-azul-1.jpg')">
+        <img src="images/recamara-azul-1.jpg" alt="Recámara principal Lanka">
+        <div class="tag blue"><em>5</em><b>Recámara 2</b></div>
+      </div>
+      <div class="g-card blue" data-cat="recamaras" onclick="openLightbox('images/recamara-azul-2.jpg')">
+        <img src="images/recamara-azul-2.jpg" alt="Recámara principal Lanka, otro ángulo">
+        <div class="tag blue"><em>5</em><b>Recámara 2</b></div>
+      </div>
+      <div class="g-card blue" data-cat="recamaras" onclick="openLightbox('images/recamara-azul-3.jpg')">
+        <img src="images/recamara-azul-3.jpg" alt="Recámara principal Lanka, cabecera">
+        <div class="tag blue"><em>5</em><b>Recámara 2</b></div>
+      </div>
+      <div class="g-card blue" data-cat="recamaras" onclick="openLightbox('images/recamara-azul-4.jpg')">
+        <img src="images/recamara-azul-4.jpg" alt="Recámara principal Lanka, buró">
+        <div class="tag blue"><em>5</em><b>Recámara 2</b></div>
+      </div>
+
+      <!-- Recámara teal / estudio -->
+      <div class="g-card wide" data-cat="recamaras" onclick="openLightbox('images/recamara-teal-1.jpg')">
+        <img src="images/recamara-teal-1.jpg" alt="Recámara con estudio Lanka">
+        <div class="tag"><em>6</em><b>Recámara 3</b></div>
+      </div>
+      <div class="g-card" data-cat="recamaras" onclick="openLightbox('images/recamara-teal-2.jpg')">
+        <img src="images/recamara-teal-2.jpg" alt="Recámara con estudio Lanka, escritorio">
+        <div class="tag"><em>6</em><b>Recámara 3</b></div>
+      </div>
+      <div class="g-card" data-cat="recamaras" onclick="openLightbox('images/recamara-teal-3.jpg')">
+        <img src="images/recamara-teal-3.jpg" alt="Recámara con estudio Lanka, clóset">
+        <div class="tag"><em>6</em><b>Recámara 3</b></div>
+      </div>
+
+      <!-- Pasillo -->
+      <div class="g-card wide" data-cat="comunes" onclick="openLightbox('images/pasillo.jpg')">
+        <img src="images/pasillo.jpg" alt="Pasillo Lanka">
+        <div class="tag"><em>+</em><b>Pasillo</b></div>
+      </div>
+
+      <!-- Baño -->
+      <div class="g-card wide blue" data-cat="banos" onclick="openLightbox('images/bano.jpg')">
+        <img src="images/bano.jpg" alt="Baño Lanka" style="object-position:top center;">
+        <div class="tag blue"><em>7</em><b>Baño</b></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider reveal"><i></i><i></i><i></i></div>
+
+  <!-- ===================== FINANCIAMIENTO ===================== -->
+  <section class="section" style="padding-top:6px;">
+    <div class="reveal">
+      <div class="eyebrow">Financiamiento</div>
+      <h2 class="section-title">Aceptamos todo tipo de crédito</h2>
+    </div>
+    <div class="fin-card reveal">
+      <p>Trabajamos con Infonavit, Cofinavit, Fovissste, Unamos, crédito BBVA y créditos bancarios tradicionales para que tu casa en Privada Lanka sea tuya de la forma más conveniente.</p>
+      <div class="fin-badges">
+        <span>Infonavit</span>
+        <span>Cofinavit</span>
+        <span>Fovissste</span>
+        <span>Unamos</span>
+        <span>Crédito BBVA</span>
+        <span>Crédito bancario</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta">
+    <h2>¿Listo para conocer Granate B en persona?</h2>
+    <p>Agenda tu visita y recorre cada espacio de esta casa diseñada para tu estilo de vida.</p>
+    <a href="https://wa.me/524444116075?text=Hola%2C%20me%20interesa%20el%20modelo%20Granate%20B%2C%20%C2%BFcu%C3%A1ndo%20podemos%20conocerlo%3F" class="cta-btn">Agendar visita</a>
+    <div class="footer-logo">
+      <img src="images/logo-castdim.png" alt="CASTDIM">
+      <div class="footer-tag">Sueños Hechos Propiedad</div>
+    </div>
+  </section>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span>&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  const tabs = document.querySelectorAll('.tab');
+  const cards = document.querySelectorAll('.g-card');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const f = tab.dataset.filter;
+      cards.forEach(c=>{
+        c.style.display = (f==='all' || c.dataset.cat===f) ? '' : 'none';
+      });
+    });
+  });
+
+  function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('show');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('show');
+  }
+</script>
 </body>
 </html>
+
